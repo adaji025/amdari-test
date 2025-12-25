@@ -24,7 +24,7 @@ export function SiteHeader() {
         </div>
 
         {/* Navigation - Central Capsule */}
-        <div className="hidden lg:flex items-center px-4 py-1.5 bg-cyan-50/50 rounded-full border border-cyan-100/50">
+        <div className="hidden lg:flex items-center px-4 py-1.5 bg-[#EEF9FC] rounded-full border border-cyan-100/50">
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="gap-1">
               <NavigationMenuItem>
@@ -32,38 +32,10 @@ export function SiteHeader() {
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-100 gap-3 p-4 md:w-125 md:grid-cols-2 lg:w-150">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md  p-6 no-underline outline-none focus:shadow-md"
-                          href="/"
-                        >
-                          <div className="mb-2 mt-4 text-lg font-medium">
-                            Amdari
-                          </div>
-                          <p className="text-sm leading-tight">
-                            Empowering project management and talent loops.
-                          </p>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a
-                          href="/"
-                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                        >
-                          <div className="text-sm font-medium leading-none">
-                            Our Mission
-                          </div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Learn about our goals and values.
-                          </p>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
+                  <div className="w-100 grid gap-3 text-sm font-medium p-3">
+                    <div className="pt-3">Our Team</div>
+                    <div>Our History</div>
+                  </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
@@ -72,7 +44,7 @@ export function SiteHeader() {
                   ProjectVault by Amdari
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="p-4 w-50">Content for ProjectVault</div>
+                  <div className="p-4 w-100">Content for ProjectVault</div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
