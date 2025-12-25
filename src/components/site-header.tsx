@@ -25,10 +25,10 @@ export function SiteHeader() {
 
         {/* Navigation - Central Capsule */}
         <div className="hidden lg:flex items-center px-4 py-1.5 bg-cyan-50/50 rounded-full border border-cyan-100/50">
-          <NavigationMenu>
+          <NavigationMenu viewport={false}>
             <NavigationMenuList className="gap-1">
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent data-[state=open]:bg-transparent text-[#005a6e] font-medium text-sm h-8 px-3">
+                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent data-[state=open]:bg-transparent text-[#005a6e] font-mebdium text-sm h-8 px-3">
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -36,13 +36,13 @@ export function SiteHeader() {
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                          className="flex h-full w-full select-none flex-col justify-end rounded-md  p-6 no-underline outline-none focus:shadow-md"
                           href="/"
                         >
                           <div className="mb-2 mt-4 text-lg font-medium">
                             Amdari
                           </div>
-                          <p className="text-sm leading-tight text-muted-foreground">
+                          <p className="text-sm leading-tight">
                             Empowering project management and talent loops.
                           </p>
                         </a>
@@ -68,7 +68,7 @@ export function SiteHeader() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent data-[state=open]:bg-transparent text-[#005a6e] font-medium text-sm h-8 px-3">
+                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent data-[state=open]:bg-transparent text-[#344054] font-medium text-sm h-8 px-3">
                   ProjectVault by Amdari
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -77,7 +77,7 @@ export function SiteHeader() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent data-[state=open]:bg-transparent text-[#005a6e] font-medium text-sm h-8 px-3">
+                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent data-[state=open]:bg-transparent text-[#344054] font-medium text-sm h-8 px-3">
                   R.A.V.E by Amdari
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -90,7 +90,7 @@ export function SiteHeader() {
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),
-                      "bg-transparent hover:bg-transparent text-[#005a6e] font-medium text-sm h-8 px-3"
+                      "bg-transparent hover:bg-transparent text-[#344054] font-medium text-sm h-8 px-3"
                     )}
                   >
                     TalentLoop by Amdari
@@ -103,7 +103,7 @@ export function SiteHeader() {
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),
-                      "bg-transparent hover:bg-transparent text-[#005a6e] font-medium text-sm h-8 px-3"
+                      "bg-transparent hover:bg-transparent text-[#344054] font-medium text-sm h-8 px-3"
                     )}
                   >
                     Hackathon
