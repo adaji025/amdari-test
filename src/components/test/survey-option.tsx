@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"
 interface SurveyOptionProps {
   label: string
   icon?: React.ReactNode
-  variant: "yes" | "no"
+  variant: "yes" | "no" | "default"
   onClick?: () => void
 }
 
@@ -14,7 +14,11 @@ export function SurveyOption({ label, icon, variant, onClick }: SurveyOptionProp
         onClick={onClick}
         className={cn(
           "flex h-12 w-12 items-center justify-center rounded-full transition-transform hover:scale-105 active:scale-95 cursor-pointer",
-          variant === "yes" ? "bg-[#135d66] text-white" : "border-2 border-[#ff7a7a] bg-[#fee2e2]",
+          variant === "yes" 
+            ? "bg-[#135d66] text-white" 
+            : variant === "no"
+            ? "border-2 border-[#ff7a7a] bg-[#fee2e2]"
+            : "border-2 border-gray-300 bg-white hover:border-[#135d66]",
         )}
       >
         {icon}
