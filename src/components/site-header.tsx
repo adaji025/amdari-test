@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,10 +14,26 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Menu, X } from "lucide-react";
+import { MobileDrawer } from "./mobile-drawer";
 
 export function SiteHeader() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
-    <header className="w-full  bg-white">
+    <header className="w-full bg-white">
       <div className="app-width py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -23,7 +42,7 @@ export function SiteHeader() {
           </Link>
         </div>
 
-        {/* Navigation - Central Capsule */}
+        {/* Navigation - Central Capsule (Desktop) */}
         <div className="hidden lg:flex items-center px-4 py-1.5 bg-[#EEF9FC] rounded-full border border-cyan-100/50">
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="gap-1">
@@ -86,8 +105,8 @@ export function SiteHeader() {
           </NavigationMenu>
         </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-6">
+        {/* Actions (Desktop) */}
+        <div className="hidden lg:flex items-center gap-6">
           <Link
             href="/signin"
             className="text-[#005a6e] font-bold text-sm hover:opacity-80 transition-opacity"
@@ -98,7 +117,28 @@ export function SiteHeader() {
             Get started
           </Button>
         </div>
+
+        {/* Hamburger Button (Mobile) */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="mobile-menu-button inline-flex items-center justify-center lg:hidden p-2 text-[#005a6e] hover:opacity-80 transition-opacity"
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
       </div>
+
+      {/* Mobile Menu - Fixed Overlay */}
+      {isMobileMenuOpen && (
+        <MobileDrawer
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        />
+      )}
     </header>
   );
 }

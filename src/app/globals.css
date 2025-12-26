@@ -126,4 +126,11 @@
   .app-width{
     @apply max-w-7xl mx-auto px-4 md:px-8;
   }
+
+  /* Ensure mobile menu button is hidden on large screens */
+  @media (min-width: 1024px) {
+    .mobile-menu-button {
+      display: none !important;
+    }
+  }
 }
