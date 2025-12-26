@@ -33,45 +33,55 @@ export function JobReadinessHero() {
         </div>
 
         {/* Right Visual Section */}
-        <div className="relative">
-          <Image
-            src={"/images/pngs/cta-compliance.png"}
-            width={160}
-            height={152}
+        <div>
+            <Image
+            src={"/images/pngs/hero-img.png"}
+            width={632}
+            height={498}
             alt="hero"
-            className="absolute"
+            className="w-full h-full object-cover rounded-[3rem]"
           />
+        </div>
+        {/* <div className="relative aspect-square w-full max-w-xl mx-auto">
+          <Image
+            src={"/images/svgs/hero-img.svg"}
+            width={632}
+            height={498}
+            alt="hero"
+            className="w-full h-full object-cover rounded-[3rem]"
+          />
+
           <Image
             src={"/images/pngs/portfolio.png"}
             width={168}
             height={58}
-            alt="hero"
-            className="absolute"
-          />
-
-          {/* main hero image */}
-          <Image
-            src={"/images/pngs/hero-img1.png"}
-            width={632}
-            height={498}
-            alt="hero"
+            alt="Portfolio"
+            className="absolute top-[40%] left-6 md:left-8 w-[120px] h-[40px] sm:w-[168px] sm:h-[58px]"
           />
 
           <Image
-            src={"/images/pngs/job-readiness.png"}
+            src={"/images/pngs/cta-compliance.png"}
+            width={160}
+            height={152}
+            alt="CV ATS Compliance"
+            className="absolute bottom-12 left-10 md:left-14 animate-bounce w-[70px] h-[70px] xs:w-[100px] xs:h-[100px] sm:w-[160px] sm:h-[152px]"
+          />
+
+          <Image
+            src={"/images/svgs/job-readiness.svg"}
             width={180}
             height={190}
-            alt="hero"
-            className="absolute right-10 top-1/2"
+            alt="Job Readiness"
+            className="absolute top-1/4 right-4 md:right-4 w-[70px] h-[70px] xs:w-[100px] xs:h-[100px] sm:w-[180px] border rounded-md sm:h-[180px]"
           />
           <Image
             src={"/images/pngs/interview-readiness.png"}
             width={203}
             height={54}
-            alt="hero"
-            className="absolute right-10 top-1/2"
+            alt="Interview Readiness"
+            className="absolute bottom-20 right-5 w-[140px] h-[40px] sm:w-[203px] sm:h-[54px]"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
