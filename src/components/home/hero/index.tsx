@@ -24,7 +24,7 @@ export function JobReadinessHero() {
             Answer a few questions to find out and get a free customized plan to
             get you <span className="font-bold text-gray-900">Job-Ready!</span>
           </p>
-          <StartAssessmentBtn />
+          <StartAssessmentBtn text="Start My Free Assessment" />
         </div>
 
         {/* Right Visual Section */}

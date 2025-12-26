@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { MobileDrawer } from "./mobile-drawer";
+import StartAssessmentBtn from "../home/start-assement-btn";
 
 export function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -116,9 +117,10 @@ export function SiteHeader() {
           >
             Sign in
           </Link>
-          <Button className="rounded-xl px-12 font-extrabold h-12 bg-linear-to-r from-[#007b8a] to-[#005a6e] hover:from-[#005a6e] hover:to-[#004a5a] text-white border-none shadow-2xl shadow-teal-900/10">
+          {/* <Button className="rounded-2xl px-12 font-extrabold h-12 bg-linear-to-r from-[#007b8a] to-[#005a6e] hover:from-[#005a6e] hover:to-[#004a5a] text-white border-none shadow-2xl shadow-teal-900/10">
             Get started
-          </Button>
+          </Button> */}
+          <StartAssessmentBtn text="Get started" />
         </div>
 
         {/* Hamburger Button (Mobile) */}

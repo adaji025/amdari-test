@@ -1,13 +1,26 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 
-const StartAssessmentBtn = () => {
+const StartAssessmentBtn = ({text}: {text: string}) => {
   return (
     <Button
       size="lg"
-      className="bg-[#2D7D8E] hover:bg-[#246473] text-white rounded-xl px-10 py-7 text-lg font-semibold shadow-xl shadow-cyan-900/20 transition-all hover:scale-105 active:scale-95"
+      className="text-white font-extrabold rounded-2xl px-10 py-6 text-base transition-all hover:scale-105 active:scale-95 relative overflow-hidden"
+      style={{
+        background: `
+          linear-gradient(0deg, #146374, #146374),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 100%)
+        `,
+        border: "1px solid transparent",
+        borderImageSource: "linear-gradient(180deg, #FFFFFF -20.83%, rgba(255, 255, 255, 0) 15.62%)",
+        borderImageSlice: 1,
+        boxShadow: `
+          0px 0px 0px 1px rgba(20, 99, 116, 0.25),
+          0px 4px 14.2px 0px rgba(20, 99, 116, 0.25)
+        `,
+      }}
     >
-      Start My Free Assessment
+      {text}
     </Button>
   );
 };

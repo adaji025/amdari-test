@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { FeatureCard } from "./feature-card";
+import StartAssessmentBtn from "../start-assement-btn";
 
 export default function AssessmentSection() {
   return (
@@ -63,10 +64,9 @@ export default function AssessmentSection() {
               </li>
             </ul>
           </div>
-          <Button className="w-full bg-[#3A7B7B] hover:bg-[#2C5E5E] text-white py-8 rounded-xl text-lg font-bold shadow-lg group">
-            Start My Free Assessment
-            <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-          </Button>
+          <div className="max-w-78 mt-2">
+            <StartAssessmentBtn text="Start My Free Assessment" />
+          </div>
         </div>
       </div>
     </section>

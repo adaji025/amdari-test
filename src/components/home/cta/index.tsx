@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../../ui/button";
 import Image from "next/image";
+import StartAssessmentBtn from "../start-assement-btn";
 
 const CTA = () => {
   return (
@@ -25,12 +26,9 @@ const CTA = () => {
             </p>
           </div>
 
-          <Button
-            size="lg"
-            className="h-16 px-10 text-lg font-bold rounded-2xl shadow-[0_10px_20px_-5px_rgba(44,122,123,0.4)] bg-linear-to-b from-[#388d8e] to-[#2c7a7b] hover:shadow-none transition-all duration-300"
-          >
-            Start My Free Assessment
-          </Button>
+          <div className="max-w-78 mt-2">
+            <StartAssessmentBtn text="Start My Free Assessment" />
+          </div>
         </div>
 
         {/* Right Column: Laptop Mockup */}
