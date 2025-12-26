@@ -40,7 +40,7 @@ const CTA = () => {
             height={700}
             width={1000}
             alt="laptop"
-            className="w-full max-w-250 object-cover"
+            className="w-full object-cover"
           />
         </div>
       </div>
