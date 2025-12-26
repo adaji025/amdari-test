@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import NextAssessmentBtn from "@/components/next-btn";
 import { SkillAcquiredHeader } from "@/components/test/header";
 import QuestionCard from "@/components/test/question-card";
@@ -114,6 +116,11 @@ const Test = () => {
   const currentSection = data[currentSectionIndex];
   const isLastSection = currentSectionIndex === data.length - 1;
 
+  // Convert index to alphabet letter (0 -> A, 1 -> B, etc.)
+  const getAlphabetPrefix = (index: number): string => {
+    return String.fromCharCode(65 + index); // 65 is ASCII for 'A'
+  };
+
   const handleNext = () => {
     if (currentSectionIndex < data.length - 1) {
       setCurrentSectionIndex(currentSectionIndex + 1);
@@ -123,17 +130,30 @@ const Test = () => {
     }
   };
 
+  const handleBack = () => {
+    if (currentSectionIndex > 0) {
+      setCurrentSectionIndex(currentSectionIndex - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const isFirstSection = currentSectionIndex === 0;
+
   if (!currentSection) {
     return null;
   }
 
   const questions = currentSection.questions || currentSection.qestions || [];
+  
+  // Remove any existing alphabet prefix and add the correct one based on index
+  const titleWithoutPrefix = currentSection.title.replace(/^[A-Z]\.\s*/, '');
+  const prefixedTitle = `${getAlphabetPrefix(currentSectionIndex)}. ${titleWithoutPrefix}`;
 
   return (
     <div className="bg-gray-100">
       <div className="pt-13.5 pb-20 w-full max-w-258 mx-auto px-4">
         <SkillAcquiredHeader
-          title={currentSection.title}
+          title={prefixedTitle}
           currentStep={currentSectionIndex + 1}
           totalSteps={data.length}
         />
@@ -156,10 +176,25 @@ const Test = () => {
           All questions must be answered before you continue.
         </div>
 
-        <NextAssessmentBtn
-          text={isLastSection ? "Submit" : "Next"}
-          onClick={handleNext}
-        />
+        <div className="flex gap-4">
+          {!isFirstSection && (
+            <Button
+              onClick={handleBack}
+              variant="outline"
+              size="lg"
+              className="flex-1 font-extrabold rounded-xl px-10 py-6 text-base border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all"
+            >
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              Back
+            </Button>
+          )}
+          <div className={isFirstSection ? "w-full" : "flex-1"}>
+            <NextAssessmentBtn
+              text={isLastSection ? "Submit" : "Next"}
+              onClick={handleNext}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
