@@ -34,7 +34,7 @@ export function SiteHeader() {
 
   return (
     <header className="w-full flex items-center bg-white h-26">
-      <div className="w-full max-w-7xl mx-0 px-4 md:px-8 py-4 flex items-center justify-between">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-1.5">
@@ -43,7 +43,7 @@ export function SiteHeader() {
         </div>
 
         {/* Navigation - Central Capsule (Desktop) */}
-        <div className="hidden lg:flex items-center px-4 py-1.5 bg-[#EEF9FC] rounded-3xl border border-cyan-100/50">
+        <div className="hidden xl:flex items-center px-4 py-2.5 bg-[#EEF9FC] rounded-2xl ">
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="gap-1">
               <NavigationMenuItem>
@@ -63,7 +63,10 @@ export function SiteHeader() {
                   ProjectVault by Amdari
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="p-4 w-100">Content for ProjectVault</div>
+                  <div className="w-100 grid gap-3 text-sm font-medium p-3">
+                    <div className="">ProjectVault 1</div>
+                    <div className="">ProjectVault 2</div>
+                  </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
@@ -106,7 +109,7 @@ export function SiteHeader() {
         </div>
 
         {/* Actions (Desktop) */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden xl:flex items-center gap-6">
           <Link
             href="/signin"
             className="text-[#005a6e] font-bold text-sm hover:opacity-80 transition-opacity"
@@ -121,7 +124,7 @@ export function SiteHeader() {
         {/* Hamburger Button (Mobile) */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="mobile-menu-button inline-flex items-center justify-center lg:hidden p-2 text-[#005a6e] hover:opacity-80 transition-opacity"
+          className="mobile-menu-button inline-flex items-center justify-center xl:hidden p-2 text-[#005a6e] hover:opacity-80 transition-opacity"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (

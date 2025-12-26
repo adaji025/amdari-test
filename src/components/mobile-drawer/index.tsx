@@ -27,7 +27,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 xl:hidden ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={onClose}
@@ -35,7 +35,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 left-0 h-full w-[70%] bg-white z-50 shadow-xl lg:hidden ${
+        className={`fixed top-0 left-0 h-full w-[70%] bg-white z-50 shadow-xl xl:hidden ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
@@ -47,13 +47,13 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
           {/* Navigation Content */}
           <div className="flex-1 overflow-y-auto flex flex-col py-4">
-            <nav className="flex flex-col space-y-2">
+            <nav className="flex flex-col space-y-3">
               {/* About Section */}
-              <div className="px-4 py-2">
+              <div className="px-4">
                 <div className="text-[#005a6e] font-medium text-sm mb-2">
                   About
                 </div>
-                <div className="ml-4 flex flex-col space-y-2">
+                <div className="ml-3 flex flex-col space-y-2">
                   <Link
                     href="/"
                     className="block text-sm text-[#344054] hover:text-[#005a6e] transition-colors"
@@ -72,18 +72,32 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               </div>
 
               {/* ProjectVault */}
-              <Link
-                href="/"
-                className="block px-4 py-2 text-[#344054] font-medium text-sm hover:text-[#005a6e] transition-colors"
-                onClick={onClose}
-              >
-                ProjectVault by Amdari
-              </Link>
+              <div className="px-4">
+                <div className="text-[#005a6e] font-medium text-sm mb-2">
+                  ProjectVault by Amdari
+                </div>
+                <div className="ml-3 flex flex-col space-y-2">
+                  <Link
+                    href="/"
+                    className="block text-sm text-[#344054] hover:text-[#005a6e] transition-colors"
+                    onClick={onClose}
+                  >
+                    ProjectVault 1
+                  </Link>
+                  <Link
+                    href="/"
+                    className="block text-sm text-[#344054] hover:text-[#005a6e] transition-colors"
+                    onClick={onClose}
+                  >
+                    ProjectVault 1
+                  </Link>
+                </div>
+              </div>
 
               {/* R.A.V.E */}
               <Link
                 href="/"
-                className="block px-4 py-2 text-[#344054] font-medium text-sm hover:text-[#005a6e] transition-colors"
+                className="block px-4 text-[#344054] font-medium text-sm hover:text-[#005a6e] transition-colors"
                 onClick={onClose}
               >
                 R.A.V.E by Amdari
@@ -92,7 +106,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               {/* TalentLoop */}
               <Link
                 href="/"
-                className="block px-4 py-2 text-[#344054] font-medium text-sm hover:text-[#005a6e] transition-colors"
+                className="block px-4 text-[#344054] font-medium text-sm hover:text-[#005a6e] transition-colors"
                 onClick={onClose}
               >
                 TalentLoop by Amdari
@@ -101,7 +115,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               {/* Hackathon */}
               <Link
                 href="/"
-                className="block px-4 py-2 text-[#344054] font-medium text-sm hover:text-[#005a6e] transition-colors"
+                className="block px-4 text-[#344054] font-medium text-sm hover:text-[#005a6e] transition-colors"
                 onClick={onClose}
               >
                 Hackathon

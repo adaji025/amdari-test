@@ -128,7 +128,7 @@
   }
 
   /* Ensure mobile menu button is hidden on large screens */
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .mobile-menu-button {
       display: none !important;
     }
