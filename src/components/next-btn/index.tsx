@@ -11,6 +11,7 @@ const NextAssessmentBtn = ({
   return (
     <Button
       size="lg"
+      onClick={onClick}
       className="text-white w-full font-extrabold rounded-xl px-10 py-6 text-base transition-all hover:scale-105 active:scale-95 relative overflow-hidden"
       style={{
         background: `

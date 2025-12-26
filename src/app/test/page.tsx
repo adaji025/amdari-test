@@ -1,10 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import NextAssessmentBtn from "@/components/next-btn";
 import { SkillAcquiredHeader } from "@/components/test/header";
 import QuestionCard from "@/components/test/question-card";
 
 const data = [
   {
-    title: "A. Tech Skill Acquired",
+    title: "Tech Skill Acquired",
     qestions: [
       {
         title:
@@ -77,7 +80,7 @@ const data = [
     questions: [
       {
         title:
-          "Do you know how to use the SEAT (Skills, Experience, Achievements, Traits) approach to answer ‘Tell me about yourself’?",
+          "Do you know how to use the SEAT (Skills, Experience, Achievements, Traits) approach to answer 'Tell me about yourself'?",
         options: ["yes", "no"],
       },
       {
@@ -103,38 +106,56 @@ const data = [
     ],
   },
 ];
+
 const Test = () => {
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const currentSection = data[currentSectionIndex];
+  const isLastSection = currentSectionIndex === data.length - 1;
+
+  const handleNext = () => {
+    if (currentSectionIndex < data.length - 1) {
+      setCurrentSectionIndex(currentSectionIndex + 1);
+    }
+  };
+
+  if (!currentSection) {
+    return null;
+  }
+
+  const questions = currentSection.questions || currentSection.qestions || [];
+
   return (
     <div className="bg-gray-100">
-      {data.map((section, sectionIndex) => (
-        <div key={sectionIndex} className="pt-13.5 pb-20 w-full max-w-258 mx-auto px-4">
-          <SkillAcquiredHeader
-            title={section.title}
-            currentStep={sectionIndex + 1}
-            totalSteps={data.length}
-          />
+      <div className="pt-13.5 pb-20 w-full max-w-258 mx-auto px-4">
+        <SkillAcquiredHeader
+          title={currentSection.title}
+          currentStep={currentSectionIndex + 1}
+          totalSteps={data.length}
+        />
 
-          <div className=" text-center text-2xl font-bold text-[#101828] mb-4 mt-10">
-            Choose how accurately each Question reflects you.
-          </div>
-
-          <div className="space-y-6">
-            {(section.questions || section.qestions || []).map((question, questionIndex) => (
-              <QuestionCard
-                key={questionIndex}
-                title={question.title}
-                options={question.options || question.option || []}
-              />
-            ))}
-          </div>
-
-          <div className="text-[#101828] text-center mt-4 mb-10">
-            All questions must be answered before you continue.
-          </div>
-
-          <NextAssessmentBtn />
+        <div className=" text-center text-2xl font-bold text-[#101828] mb-4 mt-10">
+          Choose how accurately each Question reflects you.
         </div>
-      ))}
+
+        <div className="space-y-6">
+          {questions.map((question, questionIndex) => (
+            <QuestionCard
+              key={questionIndex}
+              title={question.title}
+              options={question.options || question.option || []}
+            />
+          ))}
+        </div>
+
+        <div className="text-[#101828] text-center mt-4 mb-10">
+          All questions must be answered before you continue.
+        </div>
+
+        <NextAssessmentBtn
+          text={isLastSection ? "Submit" : "Next"}
+          onClick={handleNext}
+        />
+      </div>
     </div>
   );
 };
