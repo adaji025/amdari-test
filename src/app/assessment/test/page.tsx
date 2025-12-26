@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import NextAssessmentBtn from "@/components/next-btn";
 import { SkillAcquiredHeader } from "@/components/test/header";
 import QuestionCard from "@/components/test/question-card";
@@ -108,6 +109,7 @@ const data = [
 ];
 
 const Test = () => {
+  const router = useRouter();
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const currentSection = data[currentSectionIndex];
   const isLastSection = currentSectionIndex === data.length - 1;
@@ -116,6 +118,8 @@ const Test = () => {
     if (currentSectionIndex < data.length - 1) {
       setCurrentSectionIndex(currentSectionIndex + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      router.push('/assessment/success');
     }
   };
 
@@ -138,7 +142,7 @@ const Test = () => {
           Choose how accurately each Question reflects you.
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-10">
           {questions.map((question, questionIndex) => (
             <QuestionCard
               key={questionIndex}
@@ -148,7 +152,7 @@ const Test = () => {
           ))}
         </div>
 
-        <div className="text-[#101828] text-center mt-4 mb-10">
+        <div className="text-[#101828] text-center mt-8 mb-10">
           All questions must be answered before you continue.
         </div>
 
