@@ -1,12 +1,16 @@
-import React from "react";
-import { Button } from "../../ui/button";
+"use client";
+import { useEffect } from "react";
 import Image from "next/image";
 import StartAssessmentBtn from "../start-assement-btn";
 import Link from "next/link";
+import Aos from "aos";
 
 const CTA = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 ">
+    <div data-aos="fade-up" className="max-w-7xl mx-auto px-4 md:px-8 ">
       <div className="pl-4 rounded-xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 pt-10 mt-20 bg-[#A6FFFB47]">
         {/* Left Column: Content */}
         <div className="space-y-8 z-10 flex-1">

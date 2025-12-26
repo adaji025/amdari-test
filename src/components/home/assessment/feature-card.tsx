@@ -1,14 +1,25 @@
+"use client"
+import { useEffect } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "../../ui/card";
+import Aos from "aos";
 
 interface FeatureCardProps {
   caption: string;
   imageQuery: string;
+  delay?: number;
 }
 
-export function FeatureCard({ caption, imageQuery }: FeatureCardProps) {
+export function FeatureCard({ caption, imageQuery, delay }: FeatureCardProps) {
+  useEffect(() => {
+    Aos.init()
+  }, [])
   return (
-    <div className="flex flex-col gap-4">
+    <div 
+      data-aos="fade-down" 
+      data-aos-delay={delay}
+      className="flex flex-col gap-4"
+    >
       <Card className="overflow-hidden border-none shadow-none p-0 bg-[#F8FAFB] aspect-4/5 relative">
         <CardContent className="p-0 shadow-none h-full flex items-center justify-center">
           <Image
