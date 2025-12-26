@@ -115,6 +115,7 @@ const Test = () => {
   const handleNext = () => {
     if (currentSectionIndex < data.length - 1) {
       setCurrentSectionIndex(currentSectionIndex + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
