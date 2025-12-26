@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import StartAssessmentBtn from "../start-assement-btn";
+import Link from "next/link";
 
 export function JobReadinessHero() {
   return (
@@ -24,7 +25,9 @@ export function JobReadinessHero() {
             Answer a few questions to find out and get a free customized plan to
             get you <span className="font-bold text-gray-900">Job-Ready!</span>
           </p>
-          <StartAssessmentBtn text="Start My Free Assessment" />
+          <Link href="/assessment">
+            <StartAssessmentBtn text="Start My Free Assessment" />
+          </Link>
         </div>
 
         {/* Right Visual Section */}

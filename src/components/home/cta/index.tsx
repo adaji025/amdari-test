@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../../ui/button";
 import Image from "next/image";
 import StartAssessmentBtn from "../start-assement-btn";
+import Link from "next/link";
 
 const CTA = () => {
   return (
@@ -27,7 +28,9 @@ const CTA = () => {
           </div>
 
           <div className="max-w-78 mt-2">
-            <StartAssessmentBtn text="Start My Free Assessment" />
+            <Link href="/assessment">
+              <StartAssessmentBtn text="Start My Free Assessment" />
+            </Link>
           </div>
         </div>
 

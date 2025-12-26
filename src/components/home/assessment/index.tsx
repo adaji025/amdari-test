@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { FeatureCard } from "./feature-card";
 import StartAssessmentBtn from "../start-assement-btn";
+import Link from "next/link";
 
 export default function AssessmentSection() {
   return (
@@ -65,7 +66,9 @@ export default function AssessmentSection() {
             </ul>
           </div>
           <div className="max-w-78 mt-2">
-            <StartAssessmentBtn text="Start My Free Assessment" />
+            <Link href="/assessment">
+              <StartAssessmentBtn text="Start My Free Assessment" />
+            </Link>
           </div>
         </div>
       </div>
