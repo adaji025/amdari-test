@@ -113,6 +113,7 @@ const data = [
 const Test = () => {
   const router = useRouter();
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, Record<string, string>>>({});
   const currentSection = data[currentSectionIndex];
   const isLastSection = currentSectionIndex === data.length - 1;
 
@@ -121,11 +122,33 @@ const Test = () => {
     return String.fromCharCode(65 + index); // 65 is ASCII for 'A'
   };
 
+  const handleAnswerChange = (questionTitle: string, answer: string) => {
+    const section = currentSection;
+    const sectionTitle = section.title;
+
+    setAnswers((prev) => {
+      const updated = {
+        ...prev,
+        [sectionTitle]: {
+          ...prev[sectionTitle],
+          [questionTitle]: answer,
+        },
+      };
+      
+      // Console log the updated answers object
+      console.log('Assessment Answers:', updated);
+      
+      return updated;
+    });
+  };
+
   const handleNext = () => {
     if (currentSectionIndex < data.length - 1) {
       setCurrentSectionIndex(currentSectionIndex + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
+      // Console log final answers before submitting
+      console.log('Final Assessment Answers:', answers);
       router.push('/assessment/success');
     }
   };
@@ -163,13 +186,19 @@ const Test = () => {
         </div>
 
         <div className="space-y-10">
-          {questions.map((question, questionIndex) => (
-            <QuestionCard
-              key={questionIndex}
-              title={question.title}
-              options={question.options || question.option || []}
-            />
-          ))}
+          {questions.map((question, questionIndex) => {
+            const sectionTitle = currentSection.title;
+            return (
+              <QuestionCard
+                key={questionIndex}
+                title={question.title}
+                options={question.options || question.option || []}
+                questionId={question.title}
+                onAnswerChange={handleAnswerChange}
+                initialAnswer={answers[sectionTitle]?.[question.title] || null}
+              />
+            );
+          })}
         </div>
 
         <div className="text-[#101828] text-center mt-8 mb-10">

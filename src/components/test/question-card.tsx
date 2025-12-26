@@ -1,16 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Check } from "lucide-react";
 import { SurveyOption } from "./survey-option";
 
 interface QuestionCardProps {
   title: string;
   options: string[];
+  questionId: string;
+  onAnswerChange?: (questionId: string, answer: string) => void;
+  initialAnswer?: string | null;
 }
 
-const QuestionCard = ({ title, options }: QuestionCardProps) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+const QuestionCard = ({ title, options, questionId, onAnswerChange, initialAnswer }: QuestionCardProps) => {
+  const [selectedOption, setSelectedOption] = useState<string | null>(initialAnswer || null);
+
+  // Sync selectedOption with initialAnswer when it changes (e.g., when navigating back)
+  useEffect(() => {
+    setSelectedOption(initialAnswer || null);
+  }, [initialAnswer]);
+
+  const handleOptionSelect = (option: string) => {
+    setSelectedOption(option);
+    onAnswerChange?.(questionId, option);
+  };
 
   return (
     <div className="w-full">
@@ -34,7 +47,7 @@ const QuestionCard = ({ title, options }: QuestionCardProps) => {
                   variant={variant}
                   icon={isSelected ? <Check className="h-6 w-6 stroke-3" /> : undefined}
                   selected={isSelected}
-                  onClick={() => setSelectedOption(option)}
+                  onClick={() => handleOptionSelect(option)}
                 />
               );
             })}
