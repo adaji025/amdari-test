@@ -16,7 +16,7 @@ export function JobReadinessHero() {
       <div className="w-full py-4.5 px-4 md:px-8 xl:px-16 mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div className="space-y-8">
-          <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-tight text-gray-900">
+          <h1 className="text-5xl font-clash-display md:text-6xl font-black tracking-tight leading-tight text-gray-900">
             Are You Really <br />
             <span className="inline-block">Job Ready?</span>
           </h1>

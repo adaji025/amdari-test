@@ -116,7 +116,7 @@ export function SiteHeader() {
           >
             Sign in
           </Link>
-          <Button className="rounded-xl px-8 h-12 bg-linear-to-r from-[#007b8a] to-[#005a6e] hover:from-[#005a6e] hover:to-[#004a5a] text-white font-bold border-none shadow-2xl shadow-teal-900/10">
+          <Button className="rounded-xl px-12 font-extrabold h-12 bg-linear-to-r from-[#007b8a] to-[#005a6e] hover:from-[#005a6e] hover:to-[#004a5a] text-white border-none shadow-2xl shadow-teal-900/10">
             Get started
           </Button>
         </div>

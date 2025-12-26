@@ -7,7 +7,7 @@ import { FeatureCard } from "./feature-card";
 export default function AssessmentSection() {
   return (
     <section className="py-16 px-4 md:px-8 xl:px-16 max-w-7xl mx-auto font-sans">
-      <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-[#1A1A1A] mb-12 max-w-xl leading-[1.1]">
+      <h2 className="text-4xl md:text-6xl font-clash-display font-extrabold tracking-tight text-[#1A1A1A] mb-12 max-w-xl leading-[1.1]">
         Here&apos;s What You Get In 10 Minutes
       </h2>
 
@@ -32,7 +32,7 @@ export default function AssessmentSection() {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3 bg-[#2BD4CD29] rounded-2xl p-6 sm:p-5 flex flex-col justify-center">
-          <h3 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] mb-6">
+          <h3 className="text-4xl md:text-5xl font-clash-display font-extrabold text-[#1A1A1A] mb-6">
             Why This Matters
           </h3>
           <p className="text-base text-[#344054] font-semibold leading-relaxed max-w-xl">
@@ -45,7 +45,7 @@ export default function AssessmentSection() {
 
         <div className="lg:col-span-2 bg-[#2BD4CD29] rounded-2xl p-4 md:p-5 flex flex-col justify-between">
           <div>
-            <h3 className="text-3xl font-extrabold text-[#1A1A1A] mb-6 leading-tight">
+            <h3 className="text-3xl font-extrabold font-clash-display text-[#1A1A1A] mb-6 leading-tight">
               Ready To Stop Guessing And Start Winning?
             </h3>
             <ul className="space-y-2 mb-4">
