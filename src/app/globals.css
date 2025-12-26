@@ -156,6 +156,10 @@
     @apply bg-background text-foreground;
   }
 
+  .app-container {
+    @apply max-w-7xl mx-auto px-20 lg:px-5;
+  } 
+
   /* Ensure mobile menu button is hidden on large screens */
   @media (min-width: 1280px) {
     .mobile-menu-button {
