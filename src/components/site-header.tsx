@@ -33,8 +33,8 @@ export function SiteHeader() {
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="w-full bg-white">
-      <div className="app-width py-4 flex items-center justify-between">
+    <header className="w-full flex items-center bg-white h-26">
+      <div className="w-full max-w-7xl mx-0 px-4 md:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-1.5">
@@ -43,7 +43,7 @@ export function SiteHeader() {
         </div>
 
         {/* Navigation - Central Capsule (Desktop) */}
-        <div className="hidden lg:flex items-center px-4 py-1.5 bg-[#EEF9FC] rounded-full border border-cyan-100/50">
+        <div className="hidden lg:flex items-center px-4 py-1.5 bg-[#EEF9FC] rounded-3xl border border-cyan-100/50">
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="gap-1">
               <NavigationMenuItem>
@@ -133,12 +133,10 @@ export function SiteHeader() {
       </div>
 
       {/* Mobile Menu - Fixed Overlay */}
-      {isMobileMenuOpen && (
-        <MobileDrawer
-          isOpen={isMobileMenuOpen}
-          onClose={() => setIsMobileMenuOpen(false)}
-        />
-      )}
+      <MobileDrawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
     </header>
   );
 }
