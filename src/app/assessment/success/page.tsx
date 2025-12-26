@@ -19,7 +19,7 @@ const Success = () => {
         You’ve completed the Job Readiness Assessment
       </div>
       <div>
-        <Link href="/assessment/test">
+        <Link href="/assessment/result">
           <NextAssessmentBtn text="Get My Results" />
         </Link>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -175,7 +175,7 @@ const Test = () => {
 
     if (currentSectionIndex < data.length - 1) {
       setCurrentSectionIndex(currentSectionIndex + 1);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Scroll is handled by useEffect
     } else {
       // Console log final answers before submitting
       console.log("Final Assessment Answers:", answers);
@@ -186,11 +186,16 @@ const Test = () => {
   const handleBack = () => {
     if (currentSectionIndex > 0) {
       setCurrentSectionIndex(currentSectionIndex - 1);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Scroll is handled by useEffect
     }
   };
 
   const isFirstSection = currentSectionIndex === 0;
+
+  // Scroll to top when section changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentSectionIndex]);
 
   if (!currentSection) {
     return null;
