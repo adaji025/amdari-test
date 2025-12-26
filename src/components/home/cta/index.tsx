@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const CTA = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-16">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 ">
       <div className="pl-4 rounded-xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 pt-10 mt-20 bg-[#A6FFFB47]">
         {/* Left Column: Content */}
         <div className="space-y-8 z-10 flex-1">

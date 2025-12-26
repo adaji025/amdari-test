@@ -34,7 +34,7 @@ export function SiteHeader() {
 
   return (
     <header className="w-full flex items-center bg-white h-26">
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-8 xl:px-16 py-4 flex items-center justify-between">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-1.5">

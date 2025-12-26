@@ -6,7 +6,7 @@ import { FeatureCard } from "./feature-card";
 
 export default function AssessmentSection() {
   return (
-    <section className="py-16 px-4 md:px-8 xl:px-16 max-w-7xl mx-auto font-sans">
+    <section className="py-16 px-4 md:px-8  max-w-7xl mx-auto font-sans">
       <h2 className="text-4xl md:text-6xl font-clash-display font-extrabold tracking-tight text-[#1A1A1A] mb-12 max-w-xl leading-[1.1]">
         Here&apos;s What You Get In 10 Minutes
       </h2>

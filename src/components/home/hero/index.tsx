@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import StartAssessmentBtn from "../start-assement-btn";
 
 export function JobReadinessHero() {
   return (
@@ -13,7 +13,7 @@ export function JobReadinessHero() {
         alt="ellipse"
         className="absolute"
       />
-      <div className="w-full py-4.5 px-4 md:px-8 xl:px-16 mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="w-full py-4.5 px-4 md:px-8  mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div className="space-y-8">
           <h1 className="text-5xl font-clash-display md:text-6xl font-black tracking-tight leading-tight text-gray-900">
@@ -24,17 +24,12 @@ export function JobReadinessHero() {
             Answer a few questions to find out and get a free customized plan to
             get you <span className="font-bold text-gray-900">Job-Ready!</span>
           </p>
-          <Button
-            size="lg"
-            className="bg-[#2D7D8E] hover:bg-[#246473] text-white rounded-xl px-10 py-7 text-lg font-semibold shadow-xl shadow-cyan-900/20 transition-all hover:scale-105 active:scale-95"
-          >
-            Start My Free Assessment
-          </Button>
+          <StartAssessmentBtn />
         </div>
 
         {/* Right Visual Section */}
         <div>
-            <Image
+          <Image
             src={"/images/pngs/hero-img.png"}
             width={632}
             height={498}
