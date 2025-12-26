@@ -76,7 +76,13 @@ const data = [
   },
   {
     title: "References",
-    questions: [{ title: "", options: ["yes", "no"] }],
+    questions: [
+      {
+        title:
+          "Do you have at least one professional/organizational reference in your preferred career path?",
+        options: ["yes", "no"],
+      },
+    ],
   },
   {
     title: "Interview Readiness – SEAT",
@@ -113,7 +119,9 @@ const data = [
 const Test = () => {
   const router = useRouter();
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, Record<string, string>>>({});
+  const [answers, setAnswers] = useState<
+    Record<string, Record<string, string>>
+  >({});
   const currentSection = data[currentSectionIndex];
   const isLastSection = currentSectionIndex === data.length - 1;
 
@@ -134,29 +142,51 @@ const Test = () => {
           [questionTitle]: answer,
         },
       };
-      
+
       // Console log the updated answers object
-      console.log('Assessment Answers:', updated);
-      
+      console.log("Assessment Answers:", updated);
+
       return updated;
     });
   };
 
+  // Check if all questions in the current section are answered
+  const areAllQuestionsAnswered = () => {
+    const sectionTitle = currentSection.title;
+    const questions = currentSection.questions || currentSection.qestions || [];
+    const sectionAnswers = answers[sectionTitle] || {};
+
+    return questions.every((question) => {
+      // Skip questions with empty titles
+      if (!question.title || question.title.trim() === "") return true;
+      return (
+        sectionAnswers[question.title] !== undefined &&
+        sectionAnswers[question.title] !== null &&
+        sectionAnswers[question.title] !== ""
+      );
+    });
+  };
+
   const handleNext = () => {
+    // Check if all questions are answered before proceeding
+    if (!areAllQuestionsAnswered()) {
+      return;
+    }
+
     if (currentSectionIndex < data.length - 1) {
       setCurrentSectionIndex(currentSectionIndex + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       // Console log final answers before submitting
-      console.log('Final Assessment Answers:', answers);
-      router.push('/assessment/success');
+      console.log("Final Assessment Answers:", answers);
+      router.push("/assessment/success");
     }
   };
 
   const handleBack = () => {
     if (currentSectionIndex > 0) {
       setCurrentSectionIndex(currentSectionIndex - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -167,10 +197,12 @@ const Test = () => {
   }
 
   const questions = currentSection.questions || currentSection.qestions || [];
-  
+
   // Remove any existing alphabet prefix and add the correct one based on index
-  const titleWithoutPrefix = currentSection.title.replace(/^[A-Z]\.\s*/, '');
-  const prefixedTitle = `${getAlphabetPrefix(currentSectionIndex)}. ${titleWithoutPrefix}`;
+  const titleWithoutPrefix = currentSection.title.replace(/^[A-Z]\.\s*/, "");
+  const prefixedTitle = `${getAlphabetPrefix(
+    currentSectionIndex
+  )}. ${titleWithoutPrefix}`;
 
   return (
     <div className="bg-gray-100">
@@ -221,6 +253,7 @@ const Test = () => {
             <NextAssessmentBtn
               text={isLastSection ? "Submit" : "Next"}
               onClick={handleNext}
+              disabled={!areAllQuestionsAnswered()}
             />
           </div>
         </div>

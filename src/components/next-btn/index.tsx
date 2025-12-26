@@ -4,15 +4,18 @@ import React from "react";
 const NextAssessmentBtn = ({
   text = "Next",
   onClick,
+  disabled = false,
 }: {
   text?: string;
   onClick?: () => void;
+  disabled?: boolean;
 }) => {
   return (
     <Button
       size="lg"
       onClick={onClick}
-      className="text-white w-full font-extrabold rounded-xl px-10 py-6 text-base transition-all hover:scale-105 active:scale-95 relative overflow-hidden"
+      disabled={disabled}
+      className="text-white w-full font-extrabold rounded-xl px-10 py-6 text-base transition-all hover:scale-105 active:scale-95 relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
       style={{
         background: `
           linear-gradient(0deg, #146374, #146374),
