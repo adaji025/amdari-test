@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Check } from "lucide-react";
 import { SurveyOption } from "./survey-option";
 
@@ -8,6 +10,8 @@ interface QuestionCardProps {
 }
 
 const QuestionCard = ({ title, options }: QuestionCardProps) => {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
   return (
     <div className="w-full">
       <div className="w-full rounded-[24px] bg-white p-12 shadow-md">
@@ -22,12 +26,15 @@ const QuestionCard = ({ title, options }: QuestionCardProps) => {
             {options.map((option, index) => {
               const lowerOption = option.toLowerCase();
               const variant = lowerOption === "yes" ? "yes" : lowerOption === "no" ? "no" : "default";
+              const isSelected = selectedOption === option;
               return (
                 <SurveyOption
                   key={index}
                   label={option}
                   variant={variant}
-                  icon={lowerOption === "yes" ? <Check className="h-6 w-6 stroke-3" /> : undefined}
+                  icon={isSelected ? <Check className="h-6 w-6 stroke-3" /> : undefined}
+                  selected={isSelected}
+                  onClick={() => setSelectedOption(option)}
                 />
               );
             })}
