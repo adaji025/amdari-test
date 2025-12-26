@@ -1,6 +1,6 @@
-import AssessmentSection from "@/components/assessment";
-import CTA from "@/components/cta";
-import { JobReadinessHero } from "@/components/hero";
+import AssessmentSection from "@/components/home/assessment";
+import CTA from "@/components/home/cta";
+import { JobReadinessHero } from "@/components/home/hero";
 
 export default function Home() {
   return (
