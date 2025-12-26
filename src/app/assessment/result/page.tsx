@@ -4,6 +4,8 @@ import { ScoreGauge } from "@/components/result/score-guage";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { WarningIcon } from "@/components/svg";
+import StartAssessmentBtn from "@/components/home/start-assement-btn";
+import Link from "next/link";
 
 function Result() {
   return (
@@ -120,6 +122,9 @@ function Result() {
           by clicking the “See Feedback” buttons.
         </div>
       </div>
+      <Link href="/assessment" className="mt-10 block">
+        <StartAssessmentBtn text="Start here…." />
+      </Link>
     </div>
   );
 }
