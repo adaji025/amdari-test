@@ -42,13 +42,6 @@ const getVariant = (score: number, total: number = 10): "teal" | "yellow" | "red
 };
 
 export function ResultComp({ statistics }: ResultCompProps) {
-  // Extract data from statistics with fallbacks
-  const overallScore = statistics?.overall_score ?? statistics?.total_score ?? statistics?.score ?? 87;
-  const masteryLevel = statistics?.mastery_level ?? "Established";
-  const points = statistics?.points ?? overallScore;
-  const performancePercentage = statistics?.performance_percentage ?? 80;
-  const summary = statistics?.summary ?? "Your current job readiness score shows that you are not yet fully prepared for the competitive tech job market....";
-  
   // Default categories if not provided
   const defaultCategories = [
     { title: "Tech Skills", score: 7, total: 10 },
@@ -103,6 +96,23 @@ export function ResultComp({ statistics }: ResultCompProps) {
 
   const categories = normalizeCategories(statistics?.categories);
 
+  // Calculate average score from all categories (convert from 0-10 to 0-100 scale)
+  const calculateAverageScore = (): number => {
+    if (categories.length === 0) return 87; // Fallback to default
+    const sum = categories.reduce((acc, cat) => acc + cat.score, 0);
+    const average = sum / categories.length;
+    return Math.round(average * 10); // Convert from 0-10 to 0-100 scale
+  };
+
+  const averageCategoryScore = calculateAverageScore();
+  
+  // Extract data from statistics with fallbacks
+  const overallScore = statistics?.overall_score ?? statistics?.total_score ?? statistics?.score ?? averageCategoryScore;
+  const masteryLevel = statistics?.mastery_level ?? "Established";
+  const points = statistics?.points ?? averageCategoryScore;
+  const performancePercentage = statistics?.performance_percentage ?? 80;
+  const summary = statistics?.summary ?? "Your current job readiness score shows that you are not yet fully prepared for the competitive tech job market....";
+
   // Default chart data if not provided
   const defaultChartData = [
     { name: "0", score: 0 },
@@ -155,7 +165,7 @@ export function ResultComp({ statistics }: ResultCompProps) {
         </Card>
 
         <div className="flex flex-col items-center space-y-4 text-center">
-          <ScoreGauge score={overallScore} />
+          <ScoreGauge score={averageCategoryScore} />
           <div className="space-y-2">
             <h2 className="text-xl font-bold text-gray-900">
               Your Assessment Summary
