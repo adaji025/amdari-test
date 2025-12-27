@@ -137,7 +137,7 @@ const Test = () => {
       console.log("Answers submitted successfully:", result);
       
       // Redirect to success page after successful submission
-      router.push("/assessment/success");
+      router.push("/assessment/result/1");
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Failed to submit answers");
       console.error("Error submitting answers:", err);
