@@ -1,3 +1,4 @@
+"use client";
 import { AssessmentLineChart } from "@/components/result/assessment-line-chart";
 import { CategoryCard } from "@/components/result/category-card";
 import { ScoreGauge } from "@/components/result/score-guage";
@@ -7,9 +8,9 @@ import { WarningIcon } from "@/components/svg";
 import StartAssessmentBtn from "@/components/home/start-assement-btn";
 import Link from "next/link";
 
-function Result() {
+export function ResultComp() {
   return (
-    <div className="pt-13.5 pb-20 w-full max-w-213.75 mx-auto px-4">
+    <div>
       {/* Top Section */}
       <div className="min-h-20 p-3 flex items-center gap-2 bg-primary rounded-xl text-white">
         <Avatar className="border-4 h-12 w-12">
@@ -129,4 +130,3 @@ function Result() {
   );
 }
 
-export default Result;

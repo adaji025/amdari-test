@@ -1,9 +1,12 @@
+import { Dispatch, SetStateAction } from "react";
 import NextAssessmentBtn from "@/components/next-btn";
-import { CheckCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const Success = () => {
+interface IProps {
+  setShowResult: Dispatch<SetStateAction<boolean>>;
+}
+const Success = ({ setShowResult }: IProps) => {
   return (
     <div className="flex flex-col jc items-center text-center gap-10 mt-20 pb-20">
       <Image
@@ -19,9 +22,10 @@ const Success = () => {
         You’ve completed the Job Readiness Assessment
       </div>
       <div>
-        <Link href="/assessment/result">
-          <NextAssessmentBtn text="Get My Results" />
-        </Link>
+        <NextAssessmentBtn
+          text="Get My Results"
+          onClick={() => setShowResult(true)}
+        />
       </div>
     </div>
   );

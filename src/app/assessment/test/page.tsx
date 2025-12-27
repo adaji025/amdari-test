@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NextAssessmentBtn from "@/components/next-btn";
-import { SkillAcquiredHeader } from "@/components/test/header";
-import QuestionCard from "@/components/test/question-card";
+import { SkillAcquiredHeader } from "@/components/assessment/test/header";
+import QuestionCard from "@/components/assessment/test/question-card";
 
 interface Question {
   title: string;
@@ -29,6 +29,8 @@ const Test = () => {
   const [data, setData] = useState<Section[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Fetch questions from API
   useEffect(() => {
@@ -106,7 +108,45 @@ const Test = () => {
     });
   };
 
-  const handleNext = () => {
+  const submitAnswers = async () => {
+    try {
+      setSubmitting(true);
+      setSubmitError(null);
+      const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      
+      if (!apiUrl) {
+        throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined");
+      }
+
+      const response = await fetch(`${apiUrl}/answers`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(answers),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          errorData.message || `Failed to submit answers: ${response.statusText}`
+        );
+      }
+
+      const result = await response.json();
+      console.log("Answers submitted successfully:", result);
+      
+      // Redirect to success page after successful submission
+      router.push("/assessment/success");
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Failed to submit answers");
+      console.error("Error submitting answers:", err);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleNext = async () => {
     // Check if all questions are answered before proceeding
     if (!areAllQuestionsAnswered()) {
       return;
@@ -118,7 +158,8 @@ const Test = () => {
     } else {
       // Console log final answers before submitting
       console.log("Final Assessment Answers:", answers);
-      router.push("/assessment/success");
+      // Submit answers to API
+      await submitAnswers();
     }
   };
 
@@ -237,10 +278,23 @@ const Test = () => {
           )}
           <div className={isFirstSection ? "w-full" : "flex-1"}>
             <NextAssessmentBtn
-              text={isLastSection ? "Submit" : "Next"}
+              text={isLastSection ? (submitting ? "Submitting..." : "Submit") : "Next"}
               onClick={handleNext}
-              disabled={!areAllQuestionsAnswered()}
+              disabled={!areAllQuestionsAnswered() || submitting}
             />
+            {submitError && (
+              <div className="mt-4 text-center">
+                <p className="text-red-600 text-sm font-medium">{submitError}</p>
+                <Button
+                  onClick={submitAnswers}
+                  variant="outline"
+                  size="sm"
+                  className="mt-2"
+                >
+                  Retry Submission
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
