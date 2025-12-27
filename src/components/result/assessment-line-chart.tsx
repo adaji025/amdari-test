@@ -2,7 +2,16 @@
 
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts"
 
-const data = [
+interface ChartDataPoint {
+  name: string;
+  score: number;
+}
+
+interface AssessmentLineChartProps {
+  data?: ChartDataPoint[];
+}
+
+const defaultData: ChartDataPoint[] = [
   { name: "0", score: 0 },
   { name: "SKILL", score: 60 },
   { name: "PORTFOLIO", score: 80 },
@@ -13,7 +22,7 @@ const data = [
   { name: "STAR", score: 75 },
 ]
 
-export function AssessmentLineChart() {
+export function AssessmentLineChart({ data = defaultData }: AssessmentLineChartProps) {
   return (
     <div className="h-75 w-full border">
       <ResponsiveContainer width="100%" height="100%">

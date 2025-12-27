@@ -71,7 +71,7 @@ function Result() {
 
   return (
     <div className="pt-13.5 pb-20 w-full max-w-5xl mx-auto px-4">
-      {showResult ? <ResultComp /> : <Success setShowResult={setShowResult} />}
+      {showResult ? <ResultComp statistics={statistics} /> : <Success setShowResult={setShowResult} />}
     </div>
   );
 }

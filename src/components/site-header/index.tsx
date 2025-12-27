@@ -81,29 +81,31 @@ export function SiteHeader() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink
+                <NavigationMenuLink asChild>
+                  <Link
+                    href="/"
                     className={cn(
                       navigationMenuTriggerStyle(),
                       "bg-transparent hover:bg-transparent text-[#344054] font-medium text-sm h-8 px-3"
                     )}
                   >
                     TalentLoop by Amdari
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink
+                <NavigationMenuLink asChild>
+                  <Link
+                    href="/"
                     className={cn(
                       navigationMenuTriggerStyle(),
                       "bg-transparent hover:bg-transparent text-[#344054] font-medium text-sm h-8 px-3"
                     )}
                   >
                     Hackathon
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
