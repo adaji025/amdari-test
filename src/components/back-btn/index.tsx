@@ -11,7 +11,7 @@ const BackButton = ({ handleBack }: IProps) => {
       onClick={handleBack}
       variant="outline"
       size="lg"
-      className="flex-1 font-extrabold rounded-xl px-10 py-6 text-base transition-all hover:scale-105 cursor-pointer active:scale-95 relative overflow-hidden"
+      className="flex-1 w-full font-extrabold rounded-xl px-10 py-6 text-base transition-all hover:scale-105 cursor-pointer active:scale-95 relative overflow-hidden"
       style={{
         background: `
                   linear-gradient(0deg, #ffffff, #ffffff),

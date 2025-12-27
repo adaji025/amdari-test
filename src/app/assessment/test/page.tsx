@@ -39,13 +39,13 @@ const Test = () => {
         setLoading(true);
         setError(null);
         const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-        
+
         if (!apiUrl) {
           throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined");
         }
 
         const response = await fetch(`${apiUrl}/questions`);
-        
+
         if (!response.ok) {
           throw new Error(`Failed to fetch questions: ${response.statusText}`);
         }
@@ -53,7 +53,9 @@ const Test = () => {
         const questionsData = await response.json();
         setData(questionsData);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load questions");
+        setError(
+          err instanceof Error ? err.message : "Failed to load questions"
+        );
         console.error("Error fetching questions:", err);
       } finally {
         setLoading(false);
@@ -113,7 +115,7 @@ const Test = () => {
       setSubmitting(true);
       setSubmitError(null);
       const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-      
+
       if (!apiUrl) {
         throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined");
       }
@@ -129,25 +131,27 @@ const Test = () => {
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(
-          errorData.message || `Failed to submit answers: ${response.statusText}`
+          errorData.message ||
+            `Failed to submit answers: ${response.statusText}`
         );
       }
 
       const result = await response.json();
       console.log("Answers submitted successfully:", result);
-      
-      
+
       // Extract the top-level ID from the response
       const resultId = result?.id;
-      
+
       if (!resultId) {
         throw new Error("No ID received from server response");
       }
-      
+
       // Redirect to result page with the ID from response
       router.push(`/assessment/result/${resultId}`);
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : "Failed to submit answers");
+      setSubmitError(
+        err instanceof Error ? err.message : "Failed to submit answers"
+      );
       console.error("Error submitting answers:", err);
     } finally {
       setSubmitting(false);
@@ -190,8 +194,12 @@ const Test = () => {
     return (
       <div className="bg-gray-100 min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="text-2xl font-bold text-[#101828] mb-4">Loading questions...</div>
-          <div className="text-[#344054]">Please wait while we load your assessment.</div>
+          <div className="text-2xl font-bold text-[#101828] mb-4">
+            Loading questions...
+          </div>
+          <div className="text-[#344054]">
+            Please wait while we load your assessment.
+          </div>
         </div>
       </div>
     );
@@ -202,7 +210,9 @@ const Test = () => {
     return (
       <div className="bg-gray-100 min-h-screen flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
-          <div className="text-2xl font-bold text-red-600 mb-4">Error loading questions</div>
+          <div className="text-2xl font-bold text-red-600 mb-4">
+            Error loading questions
+          </div>
           <div className="text-[#344054] mb-6">{error}</div>
           <Button
             onClick={() => window.location.reload()}
@@ -220,7 +230,9 @@ const Test = () => {
     return (
       <div className="bg-gray-100 min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="text-2xl font-bold text-[#101828] mb-4">No questions available</div>
+          <div className="text-2xl font-bold text-[#101828] mb-4">
+            No questions available
+          </div>
           <div className="text-[#344054]">Please check back later.</div>
         </div>
       </div>
@@ -274,17 +286,27 @@ const Test = () => {
 
         <div className="flex flex-col sm:flex-row gap-4">
           {!isFirstSection && (
-            <BackButton handleBack={handleBack} />
+            <div className="flex-1">
+              <BackButton handleBack={handleBack} />
+            </div>
           )}
           <div className={isFirstSection ? "w-full" : "flex-1"}>
             <NextAssessmentBtn
-              text={isLastSection ? (submitting ? "Submitting..." : "Submit") : "Next"}
+              text={
+                isLastSection
+                  ? submitting
+                    ? "Submitting..."
+                    : "Submit"
+                  : "Next"
+              }
               onClick={handleNext}
               disabled={!areAllQuestionsAnswered() || submitting}
             />
             {submitError && (
               <div className="mt-4 text-center">
-                <p className="text-red-600 text-sm font-medium">{submitError}</p>
+                <p className="text-red-600 text-sm font-medium">
+                  {submitError}
+                </p>
                 <Button
                   onClick={submitAnswers}
                   variant="outline"
