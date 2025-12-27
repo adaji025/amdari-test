@@ -136,8 +136,16 @@ const Test = () => {
       const result = await response.json();
       console.log("Answers submitted successfully:", result);
       
-      // Redirect to success page after successful submission
-      router.push("/assessment/result/1");
+      
+      // Extract the top-level ID from the response
+      const resultId = result?.id;
+      
+      if (!resultId) {
+        throw new Error("No ID received from server response");
+      }
+      
+      // Redirect to result page with the ID from response
+      router.push(`/assessment/result/${resultId}`);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Failed to submit answers");
       console.error("Error submitting answers:", err);
