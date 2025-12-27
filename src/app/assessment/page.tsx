@@ -11,7 +11,7 @@ const Guidelines = () => {
     Aos.init()
   }, [])
   return (
-    <div data-aos="zoom-in" className="flex flex-col jc items-center text-center gap-10 mt-20 pb-20">
+    <div data-aos="zoom-in" className="flex flex-col justify-center px-4 items-center text-center gap-10 mt-20 pb-20">
       <Image
         src="/images/svgs/guideline.svg"
         height={274}
