@@ -115,7 +115,18 @@ export function ResultComp({ statistics }: ResultCompProps) {
     { name: "STAR", score: 75 },
   ];
 
-  const chartData = statistics?.categories ?? defaultChartData;
+  // Convert categories to chart data format (title -> name, score back to 0-100 scale)
+  const chartData = statistics?.chart_data ?? 
+    (categories.length > 0 
+      ? [
+          { name: "0", score: 0 },
+          ...categories.map(cat => ({
+            name: cat.title.toUpperCase().replace(/\s+/g, ' ').substring(0, 10), // Convert title to uppercase and truncate
+            score: cat.score * 10 // Convert back to 0-100 scale for chart
+          }))
+        ]
+      : defaultChartData
+    );
   return (
     <div>
       {/* Top Section */}
