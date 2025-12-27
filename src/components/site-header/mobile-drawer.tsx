@@ -131,12 +131,14 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               >
                 Sign in
               </Link>
-              <Button
-                className="w-full rounded-md h-10 bg-linear-to-r from-[#007b8a] to-[#005a6e] hover:from-[#005a6e] hover:to-[#004a5a] text-white font-bold border-none shadow-lg shadow-teal-900/10"
-                onClick={onClose}
-              >
-                Get started
-              </Button>
+              <Link href="/assessment">
+                <Button
+                  className="w-full rounded-md h-10 bg-linear-to-r from-[#007b8a] to-[#005a6e] hover:from-[#005a6e] hover:to-[#004a5a] text-white font-bold border-none shadow-lg shadow-teal-900/10"
+                  onClick={onClose}
+                >
+                  Get started
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

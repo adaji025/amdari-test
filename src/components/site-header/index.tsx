@@ -122,7 +122,9 @@ export function SiteHeader() {
           {/* <Button className="rounded-2xl px-12 font-extrabold h-12 bg-linear-to-r from-[#007b8a] to-[#005a6e] hover:from-[#005a6e] hover:to-[#004a5a] text-white border-none shadow-2xl shadow-teal-900/10">
             Get started
           </Button> */}
-          <StartAssessmentBtn text="Get started" />
+          <Link href="/assessment">
+            <StartAssessmentBtn text="Get started" />
+          </Link>
         </div>
 
         {/* Hamburger Button (Mobile) */}

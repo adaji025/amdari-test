@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import NextAssessmentBtn from "@/components/next-btn";
 import { SkillAcquiredHeader } from "@/components/assessment/test/header";
 import QuestionCard from "@/components/assessment/test/question-card";
+import BackButton from "@/components/back-btn";
 
 interface Question {
   title: string;
@@ -274,15 +275,7 @@ const Test = () => {
 
         <div className="flex gap-4">
           {!isFirstSection && (
-            <Button
-              onClick={handleBack}
-              variant="outline"
-              size="lg"
-              className="flex-1 font-extrabold rounded-xl px-10 py-6 text-base border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all"
-            >
-              <ArrowLeft className="w-5 h-5 mr-2" />
-              Back
-            </Button>
+            <BackButton handleBack={handleBack} />
           )}
           <div className={isFirstSection ? "w-full" : "flex-1"}>
             <NextAssessmentBtn
