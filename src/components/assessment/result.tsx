@@ -59,7 +59,7 @@ export function ResultComp() {
       {/* Bottom Section */}
       <div className="grid items-start grid-cols-1 lg:grid-cols-3 gap-8 mt-3">
         {/* Category Cards Grid */}
-        <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="lg:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="space-y-3">
             <CategoryCard title="Tech Skills" score={7} variant="teal" />
             <CategoryCard title="Portfolio" score={7} variant="teal" />
