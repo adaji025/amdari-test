@@ -248,7 +248,7 @@ const Test = () => {
           totalSteps={data.length}
         />
 
-        <div className=" text-center text-2xl font-bold text-[#101828] mb-4 mt-10">
+        <div className=" text-center text-xl sm:text-2xl font-bold text-[#101828] mb-4 mt-10">
           Choose how accurately each Question reflects you.
         </div>
 
@@ -272,7 +272,7 @@ const Test = () => {
           All questions must be answered before you continue.
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           {!isFirstSection && (
             <BackButton handleBack={handleBack} />
           )}
