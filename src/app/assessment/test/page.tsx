@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NextAssessmentBtn from "@/components/next-btn";
 import { SkillAcquiredHeader } from "@/components/assessment/test/header";
