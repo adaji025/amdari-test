@@ -10,6 +10,9 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ title, score, total = 10, variant = "teal" }: CategoryCardProps) {
+  // Score is already converted to 0-10 scale, just ensure it doesn't exceed total
+  const displayScore = Math.min(Math.round(score), total);
+
   const variants = {
     teal: {
       bg: "bg-teal-50",
@@ -44,7 +47,7 @@ export function CategoryCard({ title, score, total = 10, variant = "teal" }: Cat
       </div>
       <div className="flex items-center gap-2">
         <span className="text-sm font-bold text-gray-800">
-          {score} <span className="font-normal text-gray-500">/ {total}</span>
+          {displayScore} <span className="font-normal text-gray-500">/ {total}</span>
         </span>
         <Button
           variant="secondary"

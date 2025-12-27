@@ -64,22 +64,38 @@ export function ResultComp({ statistics }: ResultCompProps) {
   const normalizeCategories = (cats: any): Array<{ title: string; score: number; total?: number; variant?: "teal" | "yellow" | "red" }> => {
     if (!cats) return defaultCategories;
     
+    // Helper to convert score from 0-100 scale to 0-10 scale
+    const convertScore = (score: number): number => {
+      // If score is already <= 10, assume it's already on 0-10 scale
+      if (score <= 10) return score;
+      // Otherwise, convert from 0-100 to 0-10
+      return Math.round(score / 10);
+    };
+    
     // If it's already an array, return it
     if (Array.isArray(cats)) {
-      return cats.map(cat => ({
-        ...cat,
-        variant: cat.variant ?? getVariant(cat.score, cat.total ?? 10)
-      }));
+      return cats.map(cat => {
+        const convertedScore = convertScore(cat.score);
+        return {
+          ...cat,
+          score: convertedScore,
+          variant: cat.variant ?? getVariant(convertedScore, cat.total ?? 10)
+        };
+      });
     }
     
     // If it's an object, convert to array
     if (typeof cats === 'object') {
-      return Object.entries(cats).map(([key, value]: [string, any]) => ({
-        title: value.title ?? key,
-        score: value.score ?? value,
-        total: value.total ?? 10,
-        variant: value.variant ?? getVariant(value.score ?? value, value.total ?? 10)
-      }));
+      return Object.entries(cats).map(([key, value]: [string, any]) => {
+        const rawScore = value.score ?? value;
+        const convertedScore = convertScore(rawScore);
+        return {
+          title: value.title ?? key,
+          score: convertedScore,
+          total: value.total ?? 10,
+          variant: value.variant ?? getVariant(convertedScore, value.total ?? 10)
+        };
+      });
     }
     
     return defaultCategories;
@@ -99,7 +115,7 @@ export function ResultComp({ statistics }: ResultCompProps) {
     { name: "STAR", score: 75 },
   ];
 
-  const chartData = statistics?.chart_data ?? defaultChartData;
+  const chartData = statistics?.categories ?? defaultChartData;
   return (
     <div>
       {/* Top Section */}
