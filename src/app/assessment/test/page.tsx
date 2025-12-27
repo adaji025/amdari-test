@@ -8,113 +8,17 @@ import NextAssessmentBtn from "@/components/next-btn";
 import { SkillAcquiredHeader } from "@/components/test/header";
 import QuestionCard from "@/components/test/question-card";
 
-const data = [
-  {
-    title: "Tech Skill Acquired",
-    qestions: [
-      {
-        title:
-          "Have You Taken a Course in any of these Career Paths (Data Analytics, Data Science, Data Engineering, Ethical Hacking, SOC Analyst, GRC, Business Analysis, Project Management)",
-        options: ["yes", "no"],
-      },
-      {
-        title: "Which career path?",
-        options: [
-          "Data Analytics",
-          "Data Science",
-          "Data Engineering",
-          "SOC Analyst",
-          "GRC",
-          "Ethical Hacking",
-          "Business Analysis",
-          "Project Management",
-        ],
-      },
-    ],
-  },
-  {
-    title: "Portfolio",
-    questions: [
-      {
-        title: "Do you have a professional portfolio showcasing your work?",
-        options: ["yes", "no"],
-      },
-      {
-        title: "How many projects are currently in your portfolio?",
-        option: ["0 Project", "1-5 Projects", "5-10 Projects", "10+ Projects"],
-      },
-    ],
-  },
-  {
-    title: "CV (ATS Compliance)",
-    questions: [
-      {
-        title:
-          "Is your CV keyword-optimized for Applicant Tracking Systems (ATS)?",
-        options: ["yes", "no"],
-      },
-      {
-        title:
-          "On a scale of 1–5, how confident are you that your CV matches job descriptions in your field?",
-        options: ["1", "2", "3", "4", "5"],
-      },
-    ],
-  },
-  {
-    title: "LinkedIn Optimization",
-    questions: [
-      {
-        title:
-          "Do you have an optimized LinkedIn profile that highlights your skills and achievements in your preferred career path selected in question 1?",
-        options: ["yes", "no"],
-      },
-      {
-        title: "Do recruiters reach out to you on LinkedIn?",
-        options: ["yes", "no"],
-      },
-    ],
-  },
-  {
-    title: "References",
-    questions: [
-      {
-        title:
-          "Do you have at least one professional/organizational reference in your preferred career path?",
-        options: ["yes", "no"],
-      },
-    ],
-  },
-  {
-    title: "Interview Readiness – SEAT",
-    questions: [
-      {
-        title:
-          "Do you know how to use the SEAT (Skills, Experience, Achievements, Traits) approach to answer 'Tell me about yourself'?",
-        options: ["yes", "no"],
-      },
-      {
-        title:
-          "On a scale of 1–5, how confident are you in applying SEAT during interviews?",
-        options: ["1", "2", "3", "4", "5"],
-      },
-    ],
-  },
-  {
-    title: "G. Interview Readiness – STAR",
-    questions: [
-      {
-        title:
-          "Do you know how to use the STAR (Situation, Task, Action, Result) method to answer competency-based questions?",
-        options: ["yes", "no"],
-      },
-      {
-        title:
-          "On a scale of 1–5, how confident are you in applying STAR during interviews?",
-        options: ["1", "2", "3", "4", "5"],
-      },
-    ],
-  },
-];
+interface Question {
+  title: string;
+  options?: string[];
+  option?: string[];
+}
+
+interface Section {
+  title: string;
+  questions?: Question[];
+  qestions?: Question[];
+}
 
 const Test = () => {
   const router = useRouter();
@@ -122,6 +26,41 @@ const Test = () => {
   const [answers, setAnswers] = useState<
     Record<string, Record<string, string>>
   >({});
+  const [data, setData] = useState<Section[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch questions from API
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+        
+        if (!apiUrl) {
+          throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined");
+        }
+
+        const response = await fetch(`${apiUrl}/questions`);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch questions: ${response.statusText}`);
+        }
+
+        const questionsData = await response.json();
+        setData(questionsData);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load questions");
+        console.error("Error fetching questions:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuestions();
+  }, []);
+
   const currentSection = data[currentSectionIndex];
   const isLastSection = currentSectionIndex === data.length - 1;
 
@@ -196,6 +135,48 @@ const Test = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentSectionIndex]);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-2xl font-bold text-[#101828] mb-4">Loading questions...</div>
+          <div className="text-[#344054]">Please wait while we load your assessment.</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="text-2xl font-bold text-red-600 mb-4">Error loading questions</div>
+          <div className="text-[#344054] mb-6">{error}</div>
+          <Button
+            onClick={() => window.location.reload()}
+            className="font-extrabold rounded-xl px-10 py-6 text-base"
+          >
+            Retry
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Show message if no data
+  if (!data || data.length === 0) {
+    return (
+      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-2xl font-bold text-[#101828] mb-4">No questions available</div>
+          <div className="text-[#344054]">Please check back later.</div>
+        </div>
+      </div>
+    );
+  }
 
   if (!currentSection) {
     return null;
