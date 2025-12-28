@@ -43,10 +43,10 @@ export function CategoryCard({ title, score, total = 10, variant = "teal" }: Cat
     >
       <div className="flex items-center gap-3">
         <Flag className={cn("w-5 h-5 fill-current", activeVariant.icon)} />
-        <span className="text-sm font-semibold text-gray-800">{title}</span>
+        <span className="text-xs font-semibold text-gray-800">{title}</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-sm font-bold text-gray-800">
+        <span className="text-xs font-bold text-gray-800">
           {displayScore} <span className="font-normal text-gray-500">/ {total}</span>
         </span>
         <Button
